@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <title>Connexion</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+    <style>
+        /* Styles CSS pour la mise en forme */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif; /* Police de caractères */
+            background-color: #ffffff; /* Arrière-plan blanc */
+            color: #000000; /* Couleur du texte */
+        }
+
+        .container {
+            text-align: center;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Légère ombre portée */
+        }
+
+        h1 {
+            color: #0000ff; /* Couleur bleue pour le titre */
+            margin-bottom: 40px;
+            
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="submit"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #cccccc;
+            width: 200px;
+        }
+
+        input[type="submit"] {
+            background-color: #0000ff; /* Couleur bleue pour le bouton */
+            color: #ffffff; /* Texte en blanc */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-left: 60px;
+            
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0033cc; /* Couleur bleue légèrement plus foncée au survol */
+        }
+    </style>
+</head>
+<body>
+    <center> <h1><u> Connexion </u></h1> 
+    
+    <h:form>
+        <h:outputLabel value="Username:" />
+        <h:inputText value="#{loginController.username}" /><br/>
+
+        <h:outputLabel value="Password:" />
+        <h:inputSecret value="#{loginController.password}" /><br/>
+
+        <h:commandButton value="Login"  action="#{loginController.login}" />
+    </h:form>
+    
+  </center>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="3000" />
+
+
+        <p:layout fullPage="true">
+            <p:layoutUnit position="west" size="155" header="#{bundle.AppName}">
+                <h:form id="menuForm">
+                    <p:menu>
+                        <p:menuitem value="#{bundle.Home}" outcome="/template" icon="ui-icon-home"/>
+                        <p:submenu label="#{bundle.Maintenance}">
+                            <p:menuitem value="Employe" outcome="/faces/web/employe/List.xhtml" />
+                            <p:menuitem value="Machine" outcome="/faces/web/machine/List.xhtml" />
+                            <p:menuitem value="Machine By Employee" outcome="/faces/web/machine/filterMachines.xhtml" />
+                        </p:submenu>
+                    </p:menu>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="60">
+                <ui:insert name="footer"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <ui:insert name="body"/>
+                <h:panelGroup rendered="#{view.viewId == '/template.xhtml'}">
+                    <p:barChart value="#{employeController.initBarModel()}" title="#{bundle.Machinepardate}" style="width:50%; height: 300px"/>
+                </h:panelGroup>
+            </p:layoutUnit>
+            <p:layoutUnit position="north" size="60">
+                <h:form>
+                    <h:selectOneMenu value="#{languageController.selectedLanguage}" required="true" >
+
+                        <f:selectItem itemValue="selectedLanguage" itemLabel="Select Language" />
+
+                        <!--<f:selectItems value="#{languageController.selectedLanguage}" var="l"  itemValue="" itemLabel="l"></f:selectItems>-->
+                        <!--<f:selectItems value="#{languageController.selectedLanguage}" var="l"  itemValue="en" itemLabel="English"></f:selectItems>-->
+
+                        <f:selectItem itemValue="en" itemLabel="English" />
+                        <f:selectItem itemValue="fr" itemLabel="Français" />
+                        <p:ajax event="change" listener="#{languageController.changeLanguage}" />
+                    </h:selectOneMenu>
+                </h:form>
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>
